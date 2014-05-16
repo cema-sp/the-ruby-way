@@ -4,7 +4,7 @@ exit if str.nil? or str.empty?
 str.chomp!
 temp, scale = str.split(" ")
 
-abort "#{temp} is wrong number." if temp !~ /-?\d+/
+abort "\"#{temp}\" is wrong number." if temp !~ /-?\d+/
 
 temp = temp.to_f
 case scale
