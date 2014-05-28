@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'iconv'
+#require 'iconv'
 
 def get_web_page_as_utf8 url
 	open url do |io| 
@@ -19,9 +19,24 @@ def get_web_page_as_utf8 url
 		else
 			encoding = 'ISO-8859-1'
 		end
-		converter = Iconv.new('UTF-8//IGNORE',encoding)
-		return converter.iconv(source)
+		#converter = Iconv.new('UTF-8//IGNORE',encoding)
+		#return converter.iconv source
+		source.encode('UTF-8',encoding,invalid: :replace, undef: :replace, replace: '')
 	end
 end
 
-puts get_web_page_as_utf8 "http://ya.ru"
+inp = ""
+begin
+	print "Insert URL (q - quit): "
+	inp = gets.chop
+		
+	begin
+		if inp != "q" then
+			puts "ENCODED:"
+			puts get_web_page_as_utf8(inp).gsub(/\>\<(?=[^\/])/,">\n<")
+		end
+	rescue
+		puts "Something gone wrong!"
+	end
+	
+end while inp != "q"
