@@ -1,0 +1,10 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    i18n (0.6.9)
+
+PLATFORMS
+  x64-mingw32
+
+DEPENDENCIES
+  i18n

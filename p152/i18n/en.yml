@@ -1,0 +1,6 @@
+en:
+  Information: Information
+  name_age: 'Name: %{name}, Age: %{age}'
+  children:
+    one: '%{name} has one child.'
+    other: '%{name} has %{count} children.'

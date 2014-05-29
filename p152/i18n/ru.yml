@@ -1,0 +1,6 @@
+ru:
+  Information: Информация
+  name_age: 'Имя: %{name}, Возраст: %{age}'
+  children:
+    one: 'У %{name} один ребенок.'
+    other: 'У %{name} %{count} детей.'
