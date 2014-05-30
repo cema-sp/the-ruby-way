@@ -2,5 +2,7 @@ ru:
   Information: Информация
   name_age: 'Имя: %{name}, Возраст: %{age}'
   children:
-    one: 'У %{name} один ребенок.'
-    other: 'У %{name} %{count} детей.'
+    one: 'У %{name} %{count} ребенок. (one)'
+    few: 'У %{name} %{count} ребенка. (few)'
+    many: 'У %{name} %{count} детей. (many)'
+    other: 'У %{name} %{count} детей. (other)'

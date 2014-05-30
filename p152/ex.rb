@@ -1,5 +1,7 @@
 require 'i18n'
 
+I18n::Backend::Simple.include(I18n::Backend::Pluralization)
+
 class Person
 		
 	def initialize name,age,children_num
@@ -17,7 +19,9 @@ class Person
 end
 
 I18n.enforce_available_locales = true
-I18n.load_path = ['i18n/en.yml','i18n/ru.yml']
+
+#I18n.load_path = ['i18n/en.yml','i18n/ru.yml']
+I18n.load_path = Dir.glob "i18n/**"
 
 I18n.locale = :en
 puts "Current locale: #{I18n.locale}"
@@ -26,5 +30,5 @@ john.show
 
 I18n.locale = :ru
 puts "Current locale: #{I18n.locale}"
-linda = Person.new("Linda", 30, 3)
+linda = Person.new("Linda", 30, 22)
 linda.show
