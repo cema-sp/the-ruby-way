@@ -12,7 +12,8 @@ class Formula
 	end
 	def on x
 		begin
-			eval(@formula.gsub('x',x.to_s))
+			#puts "formula=#{@formula.gsub('x',x.to_f.to_s)}"
+			eval(@formula.gsub('x',x.to_f.to_s))
 		rescue
 			warn "Wrong formula"
 		end
@@ -59,6 +60,7 @@ class GraphPlot
 		
 		canvas.each_index do |i|
 			value = (@formula.on(x)+@formula.on(x+step))/2.0
+			#puts "on x=#{x.to_f}-#{(x+step).to_f} v=#{value.to_f}"
 			h = (value/step).ceil.to_i
 			max_h = [max_h, h].max
 			max_v = [max_v,value].max.to_f
@@ -67,10 +69,10 @@ class GraphPlot
 			x+=step
 		end
 		
-		p canvas
-		puts "Max_h=#{max_h}"
-		puts "Max_v=#{max_v}"
-		puts "Min_v=#{min_v}"
+		#p canvas
+		#puts "Max_h=#{max_h}"
+		#puts "Max_v=#{max_v}"
+		#puts "Min_v=#{min_v}"
 		
 		y_size = max_v.round.size
 		puts "%#{y_size}.1f" % max_v		#top value
@@ -104,11 +106,14 @@ end
 
 print "Type a formula: y="
 formula = Formula.new gets.chop
-integral = Integral.new formula
+
 print "Boundaries (' '-delimited): "
 a,b = gets.chop.split(' ')
-puts "Integral from #{a} to #{b}: INT(#{a},#{b})=#{"%-8.3f" % integral.calculate(a.to_f,b.to_f)}"
 print "Graph width: "
 w = gets.chop.to_i
+
+integral = Integral.new formula
 graph = GraphPlot.new formula
-graph.plot 0,2,5
+puts "Integral from #{a} to #{b}: INT(#{a},#{b})=#{"%-8.3f" % integral.calculate(a.to_f,b.to_f)}"
+
+graph.plot a.to_i,b.to_i,w.to_i
