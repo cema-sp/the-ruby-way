@@ -26,16 +26,14 @@ class Calendar
 =end
 		first.times {weeks[0] << nil}
 		i = 0
-		j = 0
 		loop do
 			weeks[i] ||= []
 			if weeks[i].size >= 7
 				i+=1
 			else
-				weeks[i] << list[j]
-				j+=1
+				weeks[i] << list.shift
 			end
-			break if j>list.size
+			break if list.empty?
 		end
 		@weeks = weeks
 	end
