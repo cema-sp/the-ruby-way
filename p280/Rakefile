@@ -1,3 +1,13 @@
+desc "Set PATH variable and run program (GV_PATH - GraphViz path)"
 task :default do
-	#C:\Software\graphviz\bin
+	# set GV_PATH variable
+	ENV['GV_PATH']||='C:\Software\graphviz\bin'
+	unless ENV['PATH'].split(';').include?(ENV['GV_PATH'])
+		# set PATH variable
+		ENV['PATH'] += ';'+ENV['GV_PATH']
+	end
+	# run script in script directory
+	chdir(File.dirname(__FILE__)) do
+		ruby 'ex.rb'
+	end
 end
