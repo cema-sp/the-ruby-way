@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    qtbindings (4.8.5.2-x86-mingw32)
+      qtbindings-qt (= 4.8.5)
+    qtbindings-qt (4.8.5-x86-mingw32)
+    unicode (0.4.4.1-x86-mingw32)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  qtbindings
+  unicode
