@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+  xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <author>
+    <name>Cema</name>
+  </author>
+  <id>01</id>
+  <link href="http://cema.net63.net/"/>
+  <subtitle>Made it Myself</subtitle>
+  <title>My Own Feed</title>
+  <updated>2014-08-13T22:37:19+04:00</updated>
+  <entry>
+    <author>
+      <name>Cema</name>
+    </author>
+    <id>11</id>
+    <link href="http://cema.net63.net/1"/>
+    <summary>Description of new article</summary>
+    <title>Here I Am</title>
+    <updated>2014-08-13T22:37:19+04:00</updated>
+    <dc:date>2014-08-13T22:37:19+04:00</dc:date>
+  </entry>
+  <entry>
+    <author>
+      <name>Cema</name>
+    </author>
+    <id>12</id>
+    <link href="http://cema.net63.net/2"/>
+    <summary>Great achievment</summary>
+    <title>Wow! Second One</title>
+    <updated>2014-08-13T22:37:19+04:00</updated>
+    <dc:date>2014-08-13T22:37:19+04:00</dc:date>
+  </entry>
+  <entry>
+    <author>
+      <name>Cema</name>
+    </author>
+    <id>13</id>
+    <link href="http://cema.net63.net/2"/>
+    <summary>I'm still here</summary>
+    <title>Try to Guess</title>
+    <updated>2014-08-13T22:37:19+04:00</updated>
+    <dc:date>2014-08-13T22:37:19+04:00</dc:date>
+  </entry>
+  <dc:language>ru</dc:language>
+  <dc:date>2014-08-13T22:37:19+04:00</dc:date>
+</feed>
