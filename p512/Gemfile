@@ -1,0 +1,3 @@
+source 'https://rubygems.org'
+# firstly: gem install rmagick --platform=ruby -- --with-opt-lib=C:\Software\ImageMagick\lib --with-opt-include=C:\Software\ImageMagick\include
+gem 'rmagick'
