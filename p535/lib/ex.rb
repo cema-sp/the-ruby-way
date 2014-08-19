@@ -13,11 +13,11 @@ class Alpha
 	end
 
 	def ==(other)
-		@beta.bar==other.bar
+		@beta.bar==other
 	end
 
 	def ===(other)
-		@beta.bar===other.bar
+		@beta.bar===other
 	end
 
 	def new_meth
