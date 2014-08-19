@@ -1,14 +1,4 @@
 class Alpha
-	class Beta
-		attr_accessor :foo, :bar
-
-		def initialize(fruit='lemon')
-			@foo, @bar = true, fruit
-		end
-		def foo?
-			@foo
-		end
-	end
 
 	def initialize
 		@beta = Beta.new('orange')
@@ -28,5 +18,20 @@ class Alpha
 
 	def ===(other)
 		@beta.bar===other.bar
+	end
+
+	def new_meth
+		'new'
+	end
+
+	class Alpha::Beta
+		attr_accessor :foo, :bar
+
+		def initialize(fruit='lemon')
+			@foo, @bar = true, fruit
+		end
+		def foo?
+			!@foo
+		end
 	end
 end
