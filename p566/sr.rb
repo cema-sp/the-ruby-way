@@ -7,7 +7,9 @@ PORT = 12321
 HOST = '127.0.0.1'
 
 waiter = Thread.new do
-	puts "Press \"Enter\" to stop server"
+	puts "+--------------------------------+"
+	puts "|  Press \"Enter\" to stop server  |"
+	puts "+--------------------------------+"
 	gets
 	exit
 end
@@ -15,49 +17,45 @@ end
 $mutex = Mutex.new
 $list = {}
 
-def match?(p1, p2)
-	return false if !$list[p1] or !list[p2]
+def match?(player1, player2)
+	return false if !$list[player1] or !$list[player2]
 
-	if ($list[p1][0] == p2 and $list[p2][0] == p1)
+	if ($list[player1][0] == player2 and 
+		$list[player2][0] == player1)
+		puts "LOG: #{player1} matches #{player2}"
 		true
 	else
+		puts "LOG: #{player1} doesn't match #{player2}"
 		false
 	end
 end
 
-def handle_client(sess, msg, addr, port, ipname)
+def handle_client(session, command, player1_address, port, ipname)
 	$mutex.synchronize do
-		cmd, player1, player2 = msg.split
+		command_name, player1_name, player2_name_address = command.split(";;")
+		player2_name, player2_address = player2_name_address.split("@")
 
-		player1_short = player1.dup
-		player2_short = player2.split(":")[0]
+		player1_name_address = player1_name + "@" + player1_address
+		player2_name_address = player2_name + "@" +IPSocket.getaddress(player2_address)
 
-		player1 << ":#{addr}"
-
-		user2 , host2 = player2.split(":")
-		host2 = ipname if host2 == nil
-		player2 = user2 + ":" + IPSocket.getaddress(host2)
-
-		if cmd != "login"
-			puts "Error: client sent \"#{msg}\""
+		if command_name != "login"
+			puts "ERROR: Received \"#{command}\""
 		end
 
-		$list[player1] = [player2, addr, port, ipname, sess]
+		$list[player1_name_address] = [player2_name_address, port, session]
 
-		if match?(player1, player2)
-			p1 = $list[player1]
-			p2 = $list[player2]
-			# ID = name:ipname:color
+		if match?(player1_name_address, player2_name_address)
+			p1 = $list[player1_name_address]
+			p2 = $list[player2_name_address]
 			# color: 0=white, 1=black
-			p1id = "#{player1_short}:#{p1[3]}:1"
-			p2id = "#{player2_short}:#{p2[3]}:0"
-			sess1 = p1[4]
-			sess2 = p2[4]
-			sess1.puts "#{p2id}"
-			sess2.puts "#{p1id}"
+			sess1 = p1[2]
+			sess2 = p2[2]
+			sess1.puts "#{player2_name_address};;1"
+			sess2.puts "#{player1_name_address};;0"
 			sess1.close
 			sess2.close
 		end
+
 	end
 end
 
@@ -66,10 +64,10 @@ text = nil
 $server = TCPServer.new(HOST,PORT)
 while session = $server.accept do
 	Thread.new(session) do |sess|
-		text = sess.gets
-		puts "Recieved: #{text}"
+		command = sess.gets.chomp
+		puts "LOG: Recieved command \"#{command}\" from #{sess.peeraddr}"
 		domain, port, ipname, ipaddr = sess.peeraddr
-		handle_client(sess, text, ipaddr, port, ipname)
+		handle_client(sess, command, ipaddr, port, ipname)
 		sleep 1
 	end
 end
