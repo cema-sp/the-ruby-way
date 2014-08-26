@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    mspec (1.5.21)
+    rack (1.5.2)
+    wee (2.1.0)
+      mspec (>= 1.5.9)
+      rack (>= 1.0.0)
+
+PLATFORMS
+  x86-mingw32
+
+DEPENDENCIES
+  wee
