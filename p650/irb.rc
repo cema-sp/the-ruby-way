@@ -1,0 +1,11 @@
+IRB.conf[:AUTO_INDENT] = true
+IRB.conf[:USE_READLINES] = true
+IRB.conf[:LOAD_MODULES] ||= []
+IRB.conf[:LOAD_MODULES] |= ['irb/completion']
+
+def meth(obj)
+	list = obj.methods
+	anc = obj.class.ancestors - [obj.class]
+	anc.each {|a| list -= a.instance_methods}
+	list.sort
+end
